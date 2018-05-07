@@ -3,6 +3,7 @@ package br.com.hudsonpereira.justjava;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -24,8 +25,13 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        String priceMessage = "Total item count " + quantity + " coffees";
-        priceMessage = priceMessage + "\n\nThank you!";
+        CheckBox addWhippedCream = findViewById(R.id.whipped_cream);
+
+        String priceMessage = "Name: Hudson\n" +
+                "Add whipped cream? " + addWhippedCream.isChecked() + "\n" +
+                "Quantity: " + quantity + "\n" +
+                "Total: " + (quantity * 5) + "\n" +
+                "Thank you!";
 
         displayMessage(priceMessage);
     }
