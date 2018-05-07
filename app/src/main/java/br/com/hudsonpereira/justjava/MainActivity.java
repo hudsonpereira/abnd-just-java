@@ -29,12 +29,21 @@ public class MainActivity extends AppCompatActivity {
         CheckBox addWhippedCream = findViewById(R.id.whipped_cream);
         CheckBox chocolate = findViewById(R.id.chocolate);
         EditText nameEditText = findViewById(R.id.name_edit_text);
+        int price = quantity * 5;
+
+        if (addWhippedCream.isChecked()) {
+            price = price + 1;
+        }
+
+        if (chocolate.isChecked()) {
+            price = price + 2;
+        }
 
         String priceMessage = "Name: " +  nameEditText.getText().toString() + "\n" +
                 "Add whipped cream? " + addWhippedCream.isChecked() + "\n" +
                 "Add chocolate? " + chocolate.isChecked() + "\n" +
                 "Quantity: " + quantity + "\n" +
-                "Total: " + (quantity * 5) + "\n" +
+                "Total: " + price + "\n" +
                 "Thank you!";
 
         displayMessage(priceMessage);
