@@ -1,5 +1,7 @@
 package br.com.hudsonpereira.justjava;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -47,14 +49,31 @@ public class MainActivity extends AppCompatActivity {
                 "Thank you!";
 
         displayMessage(priceMessage);
+
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:"));
+        intent.putExtra(Intent.EXTRA_TEXT, priceMessage);
+        intent.putExtra(Intent.EXTRA_SUBJECT, "JustJava order for " + nameEditText.getText().toString());
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 
     public void increment(View view) {
-        display(++quantity);
+        if (quantity < 100) {
+            quantity++;
+        }
+
+        display(quantity);
     }
 
     public void decrement(View view) {
-        display(--quantity);
+        if (quantity >= 2) {
+            quantity--;
+        }
+
+        display(quantity);
     }
 
     /**
@@ -63,11 +82,6 @@ public class MainActivity extends AppCompatActivity {
     private void display(int number) {
         TextView quantityTextView = findViewById(R.id.quantity_text_view);
         quantityTextView.setText(number + "");
-    }
-
-    private void displayPrice(int number) {
-        TextView priceTextView = findViewById(R.id.price_text_view);
-        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
     }
 
     private void displayMessage(String message) {
