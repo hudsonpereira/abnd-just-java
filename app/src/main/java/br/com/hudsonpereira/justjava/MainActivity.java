@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -26,9 +27,12 @@ public class MainActivity extends AppCompatActivity {
      */
     public void submitOrder(View view) {
         CheckBox addWhippedCream = findViewById(R.id.whipped_cream);
+        CheckBox chocolate = findViewById(R.id.chocolate);
+        EditText nameEditText = findViewById(R.id.name_edit_text);
 
-        String priceMessage = "Name: Hudson\n" +
+        String priceMessage = "Name: " +  nameEditText.getText().toString() + "\n" +
                 "Add whipped cream? " + addWhippedCream.isChecked() + "\n" +
+                "Add chocolate? " + chocolate.isChecked() + "\n" +
                 "Quantity: " + quantity + "\n" +
                 "Total: " + (quantity * 5) + "\n" +
                 "Thank you!";
